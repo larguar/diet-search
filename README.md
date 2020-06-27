@@ -10,11 +10,11 @@ So that I don't have to aimlessly Google results
 
 ## APIs Needed
 * Restaurant/Menu API
-⋅⋅* https://rapidapi.com/apidojo/api/thefork
-⋅⋅* https://rapidapi.com/restaurantmenus/api/us-restaurant-menus
+   * https://rapidapi.com/apidojo/api/thefork
+   * https://rapidapi.com/restaurantmenus/api/us-restaurant-menus
 * Recipe API
-⋅⋅* https://rapidapi.com/apidojo/api/tasty
-⋅⋅* https://rapidapi.com/spoonacular/api/recipe-food-nutrition/details
+   * https://rapidapi.com/apidojo/api/tasty
+   * https://rapidapi.com/spoonacular/api/recipe-food-nutrition/details
 
 ## Need to Have Criteria
 * Search bar
