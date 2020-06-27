@@ -36,3 +36,4 @@ So that I don't have to aimlessly search Google
 * Full recipe within our app
 
 ## Wireframe
+![App Wireframe](img/diet-wireframe.png)
