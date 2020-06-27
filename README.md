@@ -1,5 +1,5 @@
 # Search by Diet
-A mobile-first application that allows you to search for recipes as well as restaurant menu items within a given range based on dietary restrictions.
+A mobile-first application that allows you to search for restaurant menu items and recipes based on dietary restrictions.
 
 ## User Story
 ```
