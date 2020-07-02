@@ -101,7 +101,37 @@ $(document).ready(function(){
 			menu: ''
 		}
     };
-    console.log(restrictions);
+    console.log('Restrictions Object: ', restrictions);
+    
+    // pull recipe API
+    var recipeURL = "https://api.edamam.com/search?app_id=d544ae9f&app_key=c5ad09c117643ee56f64724e79d6a318&to=12&q=salad&health=vegan&health=peanut-free";
+
+	$.ajax({
+	  url: recipeURL,
+	  method: "GET"
+	}).then(function(response) {
+		console.log('Recipe API Response: ', response);
+	});
+	
+	// pull menu API
+	var menuURL = "https://api.spoonacular.com/food/menuItems/search?apiKey=e0a3536a362b46d38d50a5b045964f5a&number=12&query=sandwich&intolerances=gluten";
+
+	$.ajax({
+	  url: menuURL,
+	  method: "GET"
+	}).then(function(response) {
+		console.log('Menu API Response: ', response);
+	});
+	
+	// pull food joke API
+	var jokeURL = "https://api.spoonacular.com/food/trivia/random?apiKey=e0a3536a362b46d38d50a5b045964f5a";
+
+	$.ajax({
+	  url: jokeURL,
+	  method: "GET"
+	}).then(function(response) {
+		console.log('Food Joke API Response: ', response.text);
+	});
   
 	// recipe API carousel
 	$('#recipes .owl-carousel').owlCarousel({
