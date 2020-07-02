@@ -1,0 +1,316 @@
+/* –––––––––– GENERAL –––––––––– */
+* {
+    -webkit-font-smoothing: antialiased;
+}
+html {
+  	scroll-behavior: smooth;
+	overflow-x: hidden;
+}
+/* –––––––––– TYPE –––––––––– */
+body {
+	font-family: proxima-nova, sans-serif;
+}
+h1, h2, h3 {
+	font-family: pt-serif, serif;
+}
+h1 {
+    font-size: 56px;
+    line-height: 1.1;
+    margin: 0 0 10px;
+    color: #fff;
+}
+h2 {
+    font-size: 36px;
+    line-height: 1.25;
+    margin: 0 0 30px;
+    font-weight: 700;
+    color: #005F7D;
+}
+h3 {
+    font-size: 20px;
+    line-height: 1.2;
+    font-weight: 700;
+    margin: 0 0 15px;
+}
+p {
+    font-size: 26px;
+    line-height: 1.3;
+    letter-spacing: 0.25px;
+    margin: 0 0 40px;
+}
+p#recipe-source {
+    font-size: 15px;
+    line-height: 1.2;
+    letter-spacing: 0.8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: #005F7D;
+}
+/* –––––––––– BUTTONS –––––––––– */
+.btn-floating {
+	position: absolute!important;
+    right: 20px!important;
+    bottom: -20px!important;
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.1), 0 2px 10px 0 rgba(0,0,0,0.1), 0 6px 2px -4px rgba(0,0,0,0.1);
+}
+.btn-floating:hover {
+    box-shadow: 0 4px 6px 0 rgba(0,0,0,0.2), 0 2px 12px 0 rgba(0,0,0,0.2), 0 6px 4px -4px rgba(0,0,0,0.2);
+}
+#menus .fa-map-marker-alt {
+    margin-top: 2px;
+}
+.btn-floating.btn-large.halfway-fab {
+    bottom: -20px;
+}
+.btn.cyan:hover, .btn-large.cyan:hover {
+    background: #0097ab!important;
+}
+.btn.deep-orange.lighten-2:hover, .btn-large.deep-orange.lighten-2:hover {
+	background: #ff6e42!important;
+}
+/* –––––––––– HERO –––––––––– */
+#hero {
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    background: url(../img/background.png);
+    background-size: cover;
+    background-position: center center;
+}
+main#hero:before {
+    content: " ";
+    background: #1e1e1e;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 0.7;
+}
+::placeholder, input.select-dropdown {
+  color: #777;
+  opacity: 1;
+}
+span.caret {
+    color: #999!important;
+    background: rgba(255,255,255,0.85);
+    padding: 23px 0 27px;
+    z-index: 1;
+    right: 15px!important;
+}
+.select-wrapper .select-dropdown {
+    max-height: 236px!important;
+}
+.select-wrapper .select-dropdown li > span {
+    font-size: 17px!important;
+    color: #555!important;
+    font-weight: 600;
+}
+[type="checkbox"]:checked+label:before {
+    border-right: 2px solid #ff8a65;
+    border-bottom: 2px solid #ff8a65;
+}
+.select-wrapper .select-dropdown li.disabled {
+    display: none;
+}
+input {
+    margin: 0!important;
+    border: none!important;
+}
+form input, form button {
+    height: 50px!important;
+    font-size: 17px!important;
+    box-shadow: none!important;
+    border-radius: 0!important;
+}
+form button {
+	font-weight: 700;
+    border-radius: 0 3px 3px 0!important;
+}
+form.row {
+    background-image: linear-gradient(90deg, white, white, white, white, white, white, white, white, white, #00bcd4);
+    display: flex;
+    border-radius: 3px;
+}
+main#hero .valign-wrapper {
+    height: 100%;
+}
+div#hero-content {
+    width: 100%;
+    z-index: 1;
+}
+#hero p {
+    color: #fff;
+    opacity: 0.8;
+}
+#food-search, div#restrictions {
+    padding: 0;
+    position: relative;
+}
+#food-search input {
+    padding: 0 15px;
+    width: calc(100% - 30px);
+}
+div#restrictions input {
+    padding: 0 35px 0 15px;
+    width: calc(100% - 50px);
+}
+/* –––––––––– OWL CAROUSELS –––––––––– */
+section#recipes, section#menus {
+    padding: 30px 0;
+    margin-bottom: 0;
+}
+section#content {
+    padding: 50px 0;
+    background: #f1f1f1;
+}
+.owl-nav {
+	height: 0;
+    margin: 0;
+    position: absolute;
+    top: -65px;
+    right: 0;
+    margin-top: 0;
+    color: rgba(0,95,125,0.5);
+}
+.owl-theme .owl-nav [class*=owl-]:hover {
+    background: transparent;
+    color: rgba(0,95,125,0.8);
+    text-decoration: none;
+}
+.owl-carousel .owl-nav .owl-prev:before {
+  font-family: "Font Awesome 5 Pro";
+  content: "\f053";
+  font-size: 20px;
+  position: relative;
+  left: 0px;
+  height: auto;
+  padding: 0 7.5px;
+    margin: 0 7.5px;
+}
+.owl-carousel .owl-nav .owl-next:after {
+  font-family: "Font Awesome 5 Pro";
+  content: "\f054";
+  font-size: 20px;
+  position: relative;
+  right: 0px;
+  height: auto;
+  padding: 0 7.5px;
+    margin: 0 7.5px;
+}
+.owl-stage {
+    display: flex;
+}
+.owl-item {
+    padding-bottom: 15px;
+}
+.card {
+    border-radius: 0 20px;
+    overflow: hidden;
+    height: 100%;
+    margin: 0;
+    box-shadow: 0 10px 14px -10px rgba(0,0,0,0.4);
+}
+.card .card-content {
+    padding: 30px 25px;
+}
+.card-image {
+    height: 180px;
+    background: #f9f9f9;
+}
+.image {
+    content: " ";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-size: cover!important;
+    background-position: center center!important;
+}
+div#icons i {
+    margin-right: 5px;
+}
+div#icons i:nth-of-type(3n - 2) {
+    color: #ff8a65;
+}
+div#icons i:nth-of-type(3n - 1) {
+    color: #005F7D;
+}
+div#icons i:nth-of-type(3n) {
+    color: #00bcd4;
+}
+/* –––––––––– FOOTER –––––––––– */
+footer a.btn-large {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    box-shadow: none!important;
+}
+footer .row {
+    margin-bottom: 0;
+    padding: 100px 0;
+    text-align: center;
+}
+
+
+
+
+
+@media screen and (max-width:992px) {
+
+	section#recipes, section#menus {
+	    padding: 20px 0;
+	}
+	section#content {
+	    padding: 40px 0;
+	}
+	h1 {
+	    font-size: 52px;
+	}
+	p {
+	    font-size: 22px;
+	}
+
+}
+@media screen and (max-width: 600px) {
+
+	h2 {
+	    font-size: 28px;
+	    margin: 0 0 20px;
+	}
+	.owl-nav {
+	    top: -50px;
+	}
+	section#recipes, section#menus {
+	    padding: 12px 0;
+	}
+	section#content {
+	    padding: 30px 0;
+	}
+	footer .row {
+	    padding: 80px 0;
+	}
+	form.row {
+	    display: block;
+	    background: transparent;
+	}
+	#food-search, div#restrictions {
+	    margin-bottom: 10px;
+	}
+	div#hero-content input {
+	    background: #fff;
+	    border-radius: 3px!important;
+	}
+	form button {
+	    border-radius: 3px!important;
+	}
+	div#hero-content {
+	    padding: 0 15px;
+	}
+	h1 {
+	    font-size: 44px;
+	}
+	p {
+		font-size: 20px;
+	    margin: 0 0 30px;
+	}
+
+}
