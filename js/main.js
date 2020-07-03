@@ -200,6 +200,7 @@ $(document).ready(function(){
 	var footer = $('<footer>').attr('id', 'container');
 	footer.html('<div class="row"><div class="col s12"><h2>Didn’t find what you’re looking for?</h2><a href="#hero" class="btn-large deep-orange lighten-2">Search Again</a></div></div>');
 
+/*
     // pull recipe API
     var recipeURL = "https://api.edamam.com/search?app_id=d544ae9f&app_key=c5ad09c117643ee56f64724e79d6a318&to=12&q=salad&health=vegan&health=peanut-free";
 
@@ -229,6 +230,7 @@ $(document).ready(function(){
 	}).then(function(response) {
 		console.log('Food Joke API Response: ', response.text);
 	});
+*/
 	
 	// on form submit...
 	$('#hero form').on('submit', function(event) {
