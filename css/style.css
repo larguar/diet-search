@@ -38,7 +38,7 @@ p {
     letter-spacing: 0.25px;
     margin: 0 0 40px;
 }
-p#recipe-source {
+#recipe-source, #restaurant {
     font-size: 15px;
     line-height: 1.2;
     letter-spacing: 0.8px;
@@ -59,9 +59,6 @@ p#recipe-source {
 }
 #menus .fa-map-marker-alt {
     margin-top: 2px;
-}
-.btn-floating.btn-large.halfway-fab {
-    bottom: -20px;
 }
 .btn.cyan:hover, .btn-large.cyan:hover {
     background: #0097ab!important;
@@ -226,7 +223,7 @@ section#content {
     background-position: center center!important;
 }
 div#icons i {
-    margin-right: 5px;
+    margin-right: 8px;
 }
 div#icons i:nth-of-type(3n - 2) {
     color: #ff8a65;

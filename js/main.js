@@ -103,6 +103,103 @@ $(document).ready(function(){
     };
     console.log('Restrictions Object: ', restrictions);
     
+    // create content section   
+	var content = $('<section>').attr('id', 'content');
+	var contentContainer = $('<div>').addClass('container');
+    
+    // create recipe section
+    var recipes = $('<section>').attr('id', 'recipes').addClass('row');
+    var recipeHeading = $('<div>').addClass('col s12').html('<h2>In the Kitchen</h2>');
+    var recipeCarousel = $('<div>').addClass('owl-carousel owl-theme col s12');
+	
+	// recipe array (would be pulled from API)
+	var recipeArray = ['Recipe 1', 'Recipe 2', 'Recipe 3', 'Recipe 4', 'Recipe 5', 'Recipe 6'];
+	
+	recipeArray.forEach(function(i) {
+		
+		// create card
+		var recipeCard = $('<div>').addClass('card');
+		
+		// create card image items
+		var recipeImageContainer = $('<div>').addClass('card-image');
+		var recipeImage = $('<div>').addClass('image');
+		recipeImage.attr('style', 'background-image: url(http://placehold.it/400x300)');		
+		var recipeButton = $('<a>').addClass('btn-floating btn-large halfway-fab deep-orange lighten-2');
+		recipeButton.attr('target', '_blank').attr('href', '#');
+		recipeButton.html('<i class="fal fa-clipboard-list"></i>');
+		
+		// create card content items
+		var recipeContent = $('<div>').addClass('card-content');		
+		var recipeSource = $('<p>').attr('id', 'recipe-source');
+		recipeSource.text('Source Name');		
+		var recipeName = $('<h3>').attr('id', 'recipe-name');
+		recipeName.text('Name of the Recipe');		
+		var recipeIcons = $('<div>').attr('id', 'icons');
+		recipeIcons.html('<i class="fas fa-cheese-swiss"></i><i class="fas fa-bread-loaf"></i><i class="fas fa-acorn"></i><i class="fas fa-carrot"></i>');		
+
+		// append all card items
+		recipeImageContainer.append(recipeImage, recipeButton);
+		recipeContent.append(recipeSource, recipeName, recipeIcons);
+		recipeCard.append(recipeImageContainer, recipeContent);		
+		recipeCarousel.append(recipeCard);
+		
+	});
+    
+    // create menus section
+    var menus = $('<section>').attr('id', 'menus').addClass('row');
+    var menusHeading = $('<div>').addClass('col s12').html('<h2>Venture Out</h2>');
+    var menusCarousel = $('<div>').addClass('owl-carousel owl-theme col s12');
+	
+	// menus array (would be pulled from API)
+	var menusArray = ['Menu 1', 'Menu 2', 'Menu 3', 'Menu 4', 'Menu 5', 'Menu 6'];
+    
+    menusArray.forEach(function(i) {
+		
+		// create card
+		var menusCard = $('<div>').addClass('card');
+		
+		// create card image items
+		var menusImageContainer = $('<div>').addClass('card-image');
+		var menusImage = $('<div>').addClass('image');
+		menusImage.attr('style', 'background-image: url(http://placehold.it/400x300)');		
+		var menusButton = $('<a>').addClass('btn-floating btn-large halfway-fab cyan');
+		menusButton.html('<i class="fal fa-map-marker-alt"></i>');
+		
+		// create card content items
+		var menusContent = $('<div>').addClass('card-content');		
+		var menusRestaurant = $('<p>').attr('id', 'restaurant');
+		menusRestaurant.text('Restaurant Name');		
+		var menusName = $('<h3>').attr('id', 'menu-name');
+		menusName.text('Name of the Menu Item');		
+		var menusIcons = $('<div>').attr('id', 'icons');
+		menusIcons.html('<i class="fas fa-cheese-swiss"></i><i class="fas fa-bread-loaf"></i><i class="fas fa-acorn"></i><i class="fas fa-carrot"></i>');		
+
+		// append all card items
+		menusImageContainer.append(menusImage, menusButton);
+		menusContent.append(menusRestaurant, menusName, menusIcons);
+		menusCard.append(menusImageContainer, menusContent);		
+		menusCarousel.append(menusCard);
+		
+		// on menu item button click...
+	    menusButton.on('click', function(event) {
+		   event.preventDefault();
+		   $('#map').attr('style', 'display: block');
+		   
+		   // placeholder until we get the map stuff here
+		   $('#map').attr('style', 'height: 400px; background: #ccc;');
+		   
+		   scrollTo('map');
+	    });
+		
+	});
+	
+	// create map container
+	var map = $('<section>').attr('id', 'map');	
+    
+    // create footer   
+	var footer = $('<footer>').attr('id', 'container');
+	footer.html('<div class="row"><div class="col s12"><h2>Didn’t find what you’re looking for?</h2><a href="#hero" class="btn-large deep-orange lighten-2">Search Again</a></div></div>');
+
     // pull recipe API
     var recipeURL = "https://api.edamam.com/search?app_id=d544ae9f&app_key=c5ad09c117643ee56f64724e79d6a318&to=12&q=salad&health=vegan&health=peanut-free";
 
@@ -132,80 +229,90 @@ $(document).ready(function(){
 	}).then(function(response) {
 		console.log('Food Joke API Response: ', response.text);
 	});
-  
-	// recipe API carousel
-	$('#recipes .owl-carousel').owlCarousel({
-
-		margin: 20,
-		responsiveClass:true,
-	    responsive:{
-	        0:{
-	            items:1
-	        },
-	        575:{
-	            items:2
-	        },
-	        767:{
-	            items:3
-	        },
-	        1199:{
-	            items:4,
-	            loop:true
-	        }
-	    },
-		loop: true,
-		nav:true,
-		navText: ['',''],
-		dots: false,
-		lazyLoad: false,
-		autoplay: false,
-		navSpeed: 500
-	});
-	
-	// menu API carousel
-	$('#menus .owl-carousel').owlCarousel({
-		margin: 20,
-		responsiveClass:true,
-	    responsive:{
-	        0:{
-	            items:1
-	        },
-	        575:{
-	            items:2
-	        },
-	        767:{
-	            items:3
-	        },
-	        1199:{
-	            items:4,
-	            loop:true
-	        }
-	    },
-		loop: true,
-		nav:true,
-		navText: ['',''],
-		dots: false,
-		lazyLoad: false,
-		autoplay: false,
-		navSpeed: 500
-	});
 	
 	// on form submit...
 	$('#hero form').on('submit', function(event) {
-	   event.preventDefault();	   
-	   scrollTo('content'); 
-    });
-    
-    // on menu item button click...
-    $('#menus .btn-floating').on('click', function(event) {
-	   event.preventDefault();
-	   scrollTo('map');
-    });
+		event.preventDefault();	 
 
-    // on footer button click...
-    $('footer a.btn-large').on('click', function(event) {
-	   event.preventDefault();
-	   scrollTo('hero');
+		// append content section
+		content.append(contentContainer);
+		$('body').append(content);
+
+		// append recipe section
+		recipes.append(recipeHeading, recipeCarousel);
+		contentContainer.append(recipes);
+	
+		// recipe API carousel
+		$('#recipes .owl-carousel').owlCarousel({
+			margin: 20,
+			responsiveClass:true,
+		    responsive:{
+		        0:{
+		            items:1
+		        },
+		        575:{
+		            items:2
+		        },
+		        767:{
+		            items:3
+		        },
+		        1199:{
+		            items:4,
+		            loop:true
+		        }
+		    },
+			loop: true,
+			nav:true,
+			navText: ['',''],
+			dots: false,
+			lazyLoad: false,
+			autoplay: false,
+			navSpeed: 500
+		});
+		
+		// append menus section
+		menus.append(menusHeading, menusCarousel);
+		contentContainer.append(menus);
+		
+		// menu API carousel
+		$('#menus .owl-carousel').owlCarousel({
+			margin: 20,
+			responsiveClass:true,
+		    responsive:{
+		        0:{
+		            items:1
+		        },
+		        575:{
+		            items:2
+		        },
+		        767:{
+		            items:3
+		        },
+		        1199:{
+		            items:4,
+		            loop:true
+		        }
+		    },
+			loop: true,
+			nav:true,
+			navText: ['',''],
+			dots: false,
+			lazyLoad: false,
+			autoplay: false,
+			navSpeed: 500
+		});
+		
+		$('body').append(map, footer);	
+		$('#map').attr('style', 'display: none');    
+	       
+		scrollTo('content'); 
+		
+		// on footer button click...
+	    $('footer a.btn-large').on('click', function(event) {
+		   event.preventDefault();
+		   scrollTo('hero');
+	    });
+	    
     });
 
 });
