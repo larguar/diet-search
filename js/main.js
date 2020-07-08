@@ -32,91 +32,91 @@ $(document).ready(function(){
 			name: 'Dairy-Free',
 			icon: '<i class="fas fa-cheese-swiss"></i>',
 			recipe: '&health=dairy-free',
-			menu: ''
+			menu: '&intolerances=dairy'
 		},
 		'Egg-Free': {
 			name: 'Egg-Free',
 			icon: '<i class="fas fa-egg"></i>',
 			recipe: '&health=egg-free',
-			menu: ''
+			menu: '&intolerances=egg'
 		},
 		'Gluten-Free': {
 			name: 'Gluten-Free',
 			icon: '<i class="fas fa-bread-loaf"></i>',
 			recipe: '&health=gluten-free',
-			menu: ''
+			menu: '&intolerances=gluten'
 		},
 		'Keto': {
 			name: 'Keto',
 			icon: '<i class="fas fa-meat"></i>',
 			recipe: '&health=keto-friendly',
-			menu: ''
+			menu: '&diet=ketogenic'
 		},
 		'Paleo': {
 			name: 'Paleo',
 			icon: '<i class="fas fa-apple-alt"></i>',
 			recipe: '&health=paleo',
-			menu: ''
+			menu: '&diet=paleo'
 		},
 		'Peanut-Free': {
 			name: 'Peanut-Free',
 			icon: '<i class="fas fa-acorn"></i>',
 			recipe: '&health=peanut-free',
-			menu: ''
+			menu: '&intolerances=peanut'
 		},
 		'Pescatarian': {
 			name: 'Pescatarian',
 			icon: '<i class="fas fa-fish-cooked"></i>',
 			recipe: '&health=pescatarian',
-			menu: ''
+			menu: '&diet=pescetarian'
 		},
 		'Pork-Free': {
 			name: 'Pork-Free',
 			icon: '<i class="fas fa-pig"></i>',
 			recipe: '&health=pork-free',
-			menu: ''
+			menu: '&diet=vegetarian'
 		},
 		'Red Meat-Free': {
 			name: 'Red Meat-Free',
 			icon: '<i class="fas fa-steak"></i>',
 			recipe: '&health=red-meat-free',
-			menu: ''
+			menu: '&diet=vegetarian'
 		},
 		'Shellfish-Free': {
 			name: 'Shellfish-Free',
 			icon: '<i class="fas fa-fish"></i>',
 			recipe: '&health=shellfish-free',
-			menu: ''
+			menu: '&intolerances=shellfish'
 		},
 		'Soy-Free': {
 			name: 'Soy-Free',
 			icon: '<i class="fas fa-seedling"></i>',
 			recipe: '&health=soy-free',
-			menu: ''
+			menu: '&intolerances=soy'
 		},
 		'Tree-Nut-Free': {
 			name: 'Tree-Nut-Free',
 			icon: '<i class="fas fa-tree-alt"></i>',
 			recipe: '&health=tree-nut-free',
-			menu: ''
+			menu: '&intolerances=tree-nut'
 		},
 		'Vegan': {
 			name: 'Vegan',
 			icon: '<i class="fas fa-carrot"></i>',
 			recipe: '&health=vegan',
-			menu: ''
+			menu: '&diet=vegan'
 		},
 		'Vegetarian': {
 			name: 'Vegetarian',
 			icon: '<i class="fas fa-salad"></i>',
 			recipe: '&health=vegetarian',
-			menu: ''
+			menu: '&diet=vegetarian'
 		},
 		'Wheat-Free': {
 			name: 'Wheat-Free',
 			icon: '<i class="fas fa-wheat"></i>',
 			recipe: '&health=wheat-free',
-			menu: ''
+			menu: '&intolerances=wheat'
 		}
     };
     
@@ -167,10 +167,17 @@ $(document).ready(function(){
 	$('#hero form').on('submit', function(event) {
 		event.preventDefault();	 
 		
+		// clear html each time to prevent multiple populating
+		$('#content .container').html('');
+		
+		// only run if search has a value, otherwise show alert
 		if ($('#food-type').val() === '') {
-			$('div#hero-content .alert').text('Search field cannot be blank.');
+			$('div#hero-content .alert').html('Search field cannot be blank.');
 			return;
 		}
+		
+		// hide alert once it runs
+		$('div#hero-content .alert').html('&nbsp;');
 		
 		// pull food type value
 		var foodType = $('#food-type').val();
@@ -178,13 +185,14 @@ $(document).ready(function(){
 		// create empty strings to fill in for loop
 		var iconString = ''
 		var recipeQueryString = '';
-		var menuQueryString = '';
-		
-		if ($('#restrictions input').val() !== '') {
-			// pull choices and create an array from it
-			var restrictionChoices = $('#restrictions input').val();
-			var restrictionArray = restrictionChoices.split(', ');
+		var menuQueryString = '';		
 			
+		// pull choices and create an array from it
+		var restrictionChoices = $('#restrictions input').val();
+		var restrictionArray = restrictionChoices.split(', ');
+		
+		// if restrictions aren't blank, update strings
+		if (restrictionChoices !== 'Dietary Restrictions') {
 			// for each form option selected, add elements to strings
 			restrictionArray.forEach(function(i) {			
 				iconString = iconString.concat(restrictions[i].icon);
@@ -193,6 +201,7 @@ $(document).ready(function(){
 			});
 		}
 		
+		// data we'll need for query URLs
 		console.log(foodType);
 		console.log(recipeQueryString);
 		console.log(menuQueryString);
@@ -309,17 +318,6 @@ $(document).ready(function(){
 			menusCarousel.append(menusCard);
 			
 			// on menu item button click...
-/*
-		    menusButton.on('click', function(event) {
-			   event.preventDefault();
-			   $('#map').attr('style', 'display: block');
-			   
-			   // placeholder until we get the map stuff here
-			   $('#map').attr('style', 'height: 400px; background: #ccc;');
-			   
-			   scrollTo('map');
-		    });
-*/
 			menusButton.on("click", function (event) {
 				event.preventDefault();
 				$("#map").attr("style", "display: block");
