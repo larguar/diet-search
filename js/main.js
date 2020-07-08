@@ -10,93 +10,93 @@ $(document).ready(function(){
     
     // info for restrictions
     var restrictions = {
-		dairy: {
+		'Dairy-Free': {
 			name: 'Dairy-Free',
-			icon: '<i class="fal fa-cheese-swiss"></i>',
+			icon: '<i class="fas fa-cheese-swiss"></i>',
 			recipe: '&health=dairy-free',
 			menu: ''
 		},
-		egg: {
+		'Egg-Free': {
 			name: 'Egg-Free',
-			icon: '<i class="fal fa-egg"></i>',
+			icon: '<i class="fas fa-egg"></i>',
 			recipe: '&health=egg-free',
 			menu: ''
 		},
-		gluten: {
+		'Gluten-Free': {
 			name: 'Gluten-Free',
-			icon: '<i class="fal fa-bread-loaf"></i>',
+			icon: '<i class="fas fa-bread-loaf"></i>',
 			recipe: '&health=gluten-free',
 			menu: ''
 		},
-		keto: {
+		'Keto': {
 			name: 'Keto',
-			icon: '<i class="fal fa-meat"></i>',
+			icon: '<i class="fas fa-meat"></i>',
 			recipe: '&health=keto-friendly',
 			menu: ''
 		},
-		paleo: {
+		'Paleo': {
 			name: 'Paleo',
-			icon: '<i class="fal fa-apple-alt"></i>',
+			icon: '<i class="fas fa-apple-alt"></i>',
 			recipe: '&health=paleo',
 			menu: ''
 		},
-		peanut: {
+		'Peanut-Free': {
 			name: 'Peanut-Free',
-			icon: '<i class="fal fa-acorn"></i>',
+			icon: '<i class="fas fa-acorn"></i>',
 			recipe: '&health=peanut-free',
 			menu: ''
 		},
-		pescatarian: {
+		'Pescatarian': {
 			name: 'Pescatarian',
-			icon: '<i class="fal fa-fish-cooked"></i>',
+			icon: '<i class="fas fa-fish-cooked"></i>',
 			recipe: '&health=pescatarian',
 			menu: ''
 		},
-		pork: {
+		'Pork-Free': {
 			name: 'Pork-Free',
-			icon: '<i class="fal fa-pig"></i>',
+			icon: '<i class="fas fa-pig"></i>',
 			recipe: '&health=pork-free',
 			menu: ''
 		},
-		redMeat: {
+		'Red Meat-Free': {
 			name: 'Red Meat-Free',
-			icon: '<i class="fal fa-steak"></i>',
+			icon: '<i class="fas fa-steak"></i>',
 			recipe: '&health=red-meat-free',
 			menu: ''
 		},
-		shellfish: {
+		'Shellfish-Free': {
 			name: 'Shellfish-Free',
-			icon: '<i class="fal fa-fish"></i>',
+			icon: '<i class="fas fa-fish"></i>',
 			recipe: '&health=shellfish-free',
 			menu: ''
 		},
-		soy: {
+		'Soy-Free': {
 			name: 'Soy-Free',
-			icon: '<i class="fal fa-seedling"></i>',
+			icon: '<i class="fas fa-seedling"></i>',
 			recipe: '&health=soy-free',
 			menu: ''
 		},
-		treeNut: {
+		'Tree-Nut-Free': {
 			name: 'Tree-Nut-Free',
-			icon: '<i class="fal fa-tree-alt"></i>',
+			icon: '<i class="fas fa-tree-alt"></i>',
 			recipe: '&health=tree-nut-free',
 			menu: ''
 		},
-		vegan: {
+		'Vegan': {
 			name: 'Vegan',
-			icon: '<i class="fal fa-carrot"></i>',
+			icon: '<i class="fas fa-carrot"></i>',
 			recipe: '&health=vegan',
 			menu: ''
 		},
-		vegetarian: {
+		'Vegetarian': {
 			name: 'Vegetarian',
-			icon: '<i class="fal fa-salad"></i>',
+			icon: '<i class="fas fa-salad"></i>',
 			recipe: '&health=vegetarian',
 			menu: ''
 		},
-		wheat: {
+		'Wheat-Free': {
 			name: 'Wheat-Free',
-			icon: '<i class="fal fa-wheat"></i>',
+			icon: '<i class="fas fa-wheat"></i>',
 			recipe: '&health=wheat-free',
 			menu: ''
 		}
@@ -107,6 +107,7 @@ $(document).ready(function(){
 	var content = $('<section>').attr('id', 'content');
 	var contentContainer = $('<div>').addClass('container');
     
+/*
     // create recipe section
     var recipes = $('<section>').attr('id', 'recipes').addClass('row');
     var recipeHeading = $('<div>').addClass('col s12').html('<h2>In the Kitchen</h2>');
@@ -144,7 +145,9 @@ $(document).ready(function(){
 		recipeCarousel.append(recipeCard);
 		
 	});
+*/
     
+/*
     // create menus section
     var menus = $('<section>').attr('id', 'menus').addClass('row');
     var menusHeading = $('<div>').addClass('col s12').html('<h2>Venture Out</h2>');
@@ -192,6 +195,7 @@ $(document).ready(function(){
 	    });
 		
 	});
+*/
 	
 	// create map container
 	var map = $('<section>').attr('id', 'map');	
@@ -235,7 +239,66 @@ $(document).ready(function(){
 	// on form submit...
 	$('#hero form').on('submit', function(event) {
 		event.preventDefault();	 
-
+		
+		var restrictionChoices = $('#restrictions input').val();
+		var restrictionArray = restrictionChoices.split(', ');
+		
+		console.log(restrictionChoices);
+		console.log(restrictionArray);
+		
+		var iconString = ''
+		var recipeQueryString = '';
+		var menuQueryString = '';
+		
+		restrictionArray.forEach(function(i) {
+			
+			iconString = iconString.concat(restrictions[i].icon);
+			recipeQueryString = recipeQueryString.concat(restrictions[i].recipe);
+			menuQueryString = menuQueryString.concat(restrictions[i].menu);
+			console.log(iconString);
+			console.log(recipeQueryString);
+			console.log(menuQueryString);
+			
+		});
+		
+		// create recipe section
+	    var recipes = $('<section>').attr('id', 'recipes').addClass('row');
+	    var recipeHeading = $('<div>').addClass('col s12').html('<h2>In the Kitchen</h2>');
+	    var recipeCarousel = $('<div>').addClass('owl-carousel owl-theme col s12');
+		
+		// recipe array (would be pulled from API)
+		var recipeArray = ['Recipe 1', 'Recipe 2', 'Recipe 3', 'Recipe 4', 'Recipe 5', 'Recipe 6'];
+		
+		recipeArray.forEach(function(i) {
+			
+			// create card
+			var recipeCard = $('<div>').addClass('card');
+			
+			// create card image items
+			var recipeImageContainer = $('<div>').addClass('card-image');
+			var recipeImage = $('<div>').addClass('image');
+			recipeImage.attr('style', 'background-image: url(http://placehold.it/400x300)');		
+			var recipeButton = $('<a>').addClass('btn-floating btn-large halfway-fab deep-orange lighten-2');
+			recipeButton.attr('target', '_blank').attr('href', '#');
+			recipeButton.html('<i class="fal fa-clipboard-list"></i>');
+			
+			// create card content items
+			var recipeContent = $('<div>').addClass('card-content');		
+			var recipeSource = $('<p>').attr('id', 'recipe-source');
+			recipeSource.text('Source Name');		
+			var recipeName = $('<h3>').attr('id', 'recipe-name');
+			recipeName.text('Name of the Recipe');		
+			var recipeIcons = $('<div>').attr('id', 'icons');
+			recipeIcons.html(iconString);		
+	
+			// append all card items
+			recipeImageContainer.append(recipeImage, recipeButton);
+			recipeContent.append(recipeSource, recipeName, recipeIcons);
+			recipeCard.append(recipeImageContainer, recipeContent);		
+			recipeCarousel.append(recipeCard);
+			
+		});
+		
 		// append content section
 		content.append(contentContainer);
 		$('body').append(content);
@@ -270,6 +333,54 @@ $(document).ready(function(){
 			lazyLoad: false,
 			autoplay: false,
 			navSpeed: 500
+		});
+		
+		// create menus section
+	    var menus = $('<section>').attr('id', 'menus').addClass('row');
+	    var menusHeading = $('<div>').addClass('col s12').html('<h2>Venture Out</h2>');
+	    var menusCarousel = $('<div>').addClass('owl-carousel owl-theme col s12');
+		
+		// menus array (would be pulled from API)
+		var menusArray = ['Menu 1', 'Menu 2', 'Menu 3', 'Menu 4', 'Menu 5', 'Menu 6'];
+	    
+	    menusArray.forEach(function(i) {
+			
+			// create card
+			var menusCard = $('<div>').addClass('card');
+			
+			// create card image items
+			var menusImageContainer = $('<div>').addClass('card-image');
+			var menusImage = $('<div>').addClass('image');
+			menusImage.attr('style', 'background-image: url(http://placehold.it/400x300)');		
+			var menusButton = $('<a>').addClass('btn-floating btn-large halfway-fab cyan');
+			menusButton.html('<i class="fal fa-map-marker-alt"></i>');
+			
+			// create card content items
+			var menusContent = $('<div>').addClass('card-content');		
+			var menusRestaurant = $('<p>').attr('id', 'restaurant');
+			menusRestaurant.text('Restaurant Name');		
+			var menusName = $('<h3>').attr('id', 'menu-name');
+			menusName.text('Name of the Menu Item');		
+			var menusIcons = $('<div>').attr('id', 'icons');
+			menusIcons.html(iconString);		
+	
+			// append all card items
+			menusImageContainer.append(menusImage, menusButton);
+			menusContent.append(menusRestaurant, menusName, menusIcons);
+			menusCard.append(menusImageContainer, menusContent);		
+			menusCarousel.append(menusCard);
+			
+			// on menu item button click...
+		    menusButton.on('click', function(event) {
+			   event.preventDefault();
+			   $('#map').attr('style', 'display: block');
+			   
+			   // placeholder until we get the map stuff here
+			   $('#map').attr('style', 'height: 400px; background: #ccc;');
+			   
+			   scrollTo('map');
+		    });
+			
 		});
 		
 		// append menus section

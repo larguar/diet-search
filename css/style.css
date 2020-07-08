@@ -134,6 +134,7 @@ main#hero .valign-wrapper {
 div#hero-content {
     width: 100%;
     z-index: 1;
+    margin-bottom: 20px;
 }
 #hero p {
     color: #fff;
@@ -308,6 +309,9 @@ footer .row {
 	p {
 		font-size: 20px;
 	    margin: 0 0 30px;
+	}
+	div#hero-content {
+	    margin-bottom: 0;
 	}
 
 }
