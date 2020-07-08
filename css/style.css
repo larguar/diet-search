@@ -155,6 +155,7 @@ p.alert {
     font-size: 17px;
     font-weight: 600;
     letter-spacing: 0.6px;
+    margin-bottom: 0;
 }
 /* –––––––––– OWL CAROUSELS –––––––––– */
 section#recipes, section#menus {

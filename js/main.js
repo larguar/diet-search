@@ -167,10 +167,17 @@ $(document).ready(function(){
 	$('#hero form').on('submit', function(event) {
 		event.preventDefault();	 
 		
+		// clear html each time to prevent multiple populating
+		$('#content .container').html('');
+		
+		// only run if search has a value, otherwise show alert
 		if ($('#food-type').val() === '') {
-			$('div#hero-content .alert').text('Search field cannot be blank.');
+			$('div#hero-content .alert').html('Search field cannot be blank.');
 			return;
 		}
+		
+		// hide alert once it runs
+		$('div#hero-content .alert').html('&nbsp;');
 		
 		// pull food type value
 		var foodType = $('#food-type').val();
@@ -178,13 +185,14 @@ $(document).ready(function(){
 		// create empty strings to fill in for loop
 		var iconString = ''
 		var recipeQueryString = '';
-		var menuQueryString = '';
-		
-		if ($('#restrictions input').val() !== '') {
-			// pull choices and create an array from it
-			var restrictionChoices = $('#restrictions input').val();
-			var restrictionArray = restrictionChoices.split(', ');
+		var menuQueryString = '';		
 			
+		// pull choices and create an array from it
+		var restrictionChoices = $('#restrictions input').val();
+		var restrictionArray = restrictionChoices.split(', ');
+		
+		// if restrictions aren't blank, update strings
+		if (restrictionChoices !== 'Dietary Restrictions') {
 			// for each form option selected, add elements to strings
 			restrictionArray.forEach(function(i) {			
 				iconString = iconString.concat(restrictions[i].icon);
@@ -193,6 +201,7 @@ $(document).ready(function(){
 			});
 		}
 		
+		// data we'll need for query URLs
 		console.log(foodType);
 		console.log(recipeQueryString);
 		console.log(menuQueryString);
@@ -309,17 +318,6 @@ $(document).ready(function(){
 			menusCarousel.append(menusCard);
 			
 			// on menu item button click...
-/*
-		    menusButton.on('click', function(event) {
-			   event.preventDefault();
-			   $('#map').attr('style', 'display: block');
-			   
-			   // placeholder until we get the map stuff here
-			   $('#map').attr('style', 'height: 400px; background: #ccc;');
-			   
-			   scrollTo('map');
-		    });
-*/
 			menusButton.on("click", function (event) {
 				event.preventDefault();
 				$("#map").attr("style", "display: block");
