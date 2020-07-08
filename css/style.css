@@ -134,7 +134,6 @@ main#hero .valign-wrapper {
 div#hero-content {
     width: 100%;
     z-index: 1;
-    margin-bottom: 20px;
 }
 #hero p {
     color: #fff;
@@ -151,6 +150,11 @@ div#hero-content {
 div#restrictions input {
     padding: 0 35px 0 15px;
     width: calc(100% - 50px);
+}
+p.alert {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
 }
 /* –––––––––– OWL CAROUSELS –––––––––– */
 section#recipes, section#menus {

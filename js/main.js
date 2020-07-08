@@ -3,6 +3,24 @@ $(document).ready(function(){
 	// initialize select for materialize framework
     $('select').material_select();
     
+    // grabbing geolocation; can remove console.log or make something pop up
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(showPosition);
+	} else {
+		console.log("Geolocation is not supported by this browser.");
+	}
+	
+	// making these global variables so they aren't just what they are within the function
+	var currentLatitude;
+	var currentLongitude;
+	
+	// grabbing geolocation and turning them into our variables
+	function showPosition(position) {
+		console.log(position);
+		currentLatitude = position.coords.latitude;
+		currentLongitude = position.coords.longitude;
+	}
+    
     // smooth scroll to anchor function
     function scrollTo(id) {
 	    $('html,body').animate({scrollTop: $('#' + id).offset().top},'fast');
@@ -101,12 +119,11 @@ $(document).ready(function(){
 			menu: ''
 		}
     };
-    console.log('Restrictions Object: ', restrictions);
     
     // create content section   
 	var content = $('<section>').attr('id', 'content');
 	var contentContainer = $('<div>').addClass('container');
-
+	
 	// create map container
 	var map = $('<section>').attr('id', 'map');	
     
@@ -150,26 +167,35 @@ $(document).ready(function(){
 	$('#hero form').on('submit', function(event) {
 		event.preventDefault();	 
 		
-		var restrictionChoices = $('#restrictions input').val();
-		var restrictionArray = restrictionChoices.split(', ');
+		if ($('#food-type').val() === '') {
+			$('div#hero-content .alert').text('Search field cannot be blank.');
+			return;
+		}
 		
-		console.log(restrictionChoices);
-		console.log(restrictionArray);
+		// pull food type value
+		var foodType = $('#food-type').val();
 		
+		// create empty strings to fill in for loop
 		var iconString = ''
 		var recipeQueryString = '';
 		var menuQueryString = '';
 		
-		restrictionArray.forEach(function(i) {
+		if ($('#restrictions input').val() !== '') {
+			// pull choices and create an array from it
+			var restrictionChoices = $('#restrictions input').val();
+			var restrictionArray = restrictionChoices.split(', ');
 			
-			iconString = iconString.concat(restrictions[i].icon);
-			recipeQueryString = recipeQueryString.concat(restrictions[i].recipe);
-			menuQueryString = menuQueryString.concat(restrictions[i].menu);
-			console.log(iconString);
-			console.log(recipeQueryString);
-			console.log(menuQueryString);
-			
-		});
+			// for each form option selected, add elements to strings
+			restrictionArray.forEach(function(i) {			
+				iconString = iconString.concat(restrictions[i].icon);
+				recipeQueryString = recipeQueryString.concat(restrictions[i].recipe);
+				menuQueryString = menuQueryString.concat(restrictions[i].menu);			
+			});
+		}
+		
+		console.log(foodType);
+		console.log(recipeQueryString);
+		console.log(menuQueryString);
 		
 		// create recipe section
 	    var recipes = $('<section>').attr('id', 'recipes').addClass('row');
@@ -263,6 +289,8 @@ $(document).ready(function(){
 			var menusImage = $('<div>').addClass('image');
 			menusImage.attr('style', 'background-image: url(http://placehold.it/400x300)');		
 			var menusButton = $('<a>').addClass('btn-floating btn-large halfway-fab cyan');
+			// update this when you update restaurant name from restaurant api
+			menusButton.attr("data-restaurant-name", "mcdonalds");
 			menusButton.html('<i class="fal fa-map-marker-alt"></i>');
 			
 			// create card content items
@@ -281,6 +309,7 @@ $(document).ready(function(){
 			menusCarousel.append(menusCard);
 			
 			// on menu item button click...
+/*
 		    menusButton.on('click', function(event) {
 			   event.preventDefault();
 			   $('#map').attr('style', 'display: block');
@@ -290,6 +319,37 @@ $(document).ready(function(){
 			   
 			   scrollTo('map');
 		    });
+*/
+			menusButton.on("click", function (event) {
+				event.preventDefault();
+				$("#map").attr("style", "display: block");
+				console.log("map button");
+
+				var restaurantMap = $(this).attr("data-restaurant-name");
+				console.log({ restaurantMap });
+
+				// placeholder until we get the map stuff here
+				$("#map").attr("style", "height: 400px; background: #ccc;");
+
+				scrollTo("map");
+
+				var mapURL =
+				  "https://api.tomtom.com/search/2/search/" +
+				  restaurantMap +
+				  ".json?key=gAoUziAVGJqNlbKWdEdy63iT9N34AHHX&lat=" +
+				  currentLatitude +
+				  "&lon=" +
+				  currentLongitude +
+				  "&radius=40233";
+
+				$.ajax({
+				  url: mapURL,
+				  method: "GET",
+				}).then(function (response) {
+				  console.log("Map API Response", response);
+				});
+
+			});
 			
 		});
 		
