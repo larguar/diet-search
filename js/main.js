@@ -32,91 +32,91 @@ $(document).ready(function(){
 			name: 'Dairy-Free',
 			icon: '<i class="fas fa-cheese-swiss"></i>',
 			recipe: '&health=dairy-free',
-			menu: ''
+			menu: '&intolerances=dairy'
 		},
 		'Egg-Free': {
 			name: 'Egg-Free',
 			icon: '<i class="fas fa-egg"></i>',
 			recipe: '&health=egg-free',
-			menu: ''
+			menu: '&intolerances=egg'
 		},
 		'Gluten-Free': {
 			name: 'Gluten-Free',
 			icon: '<i class="fas fa-bread-loaf"></i>',
 			recipe: '&health=gluten-free',
-			menu: ''
+			menu: '&intolerances=gluten'
 		},
 		'Keto': {
 			name: 'Keto',
 			icon: '<i class="fas fa-meat"></i>',
 			recipe: '&health=keto-friendly',
-			menu: ''
+			menu: '&diet=ketogenic'
 		},
 		'Paleo': {
 			name: 'Paleo',
 			icon: '<i class="fas fa-apple-alt"></i>',
 			recipe: '&health=paleo',
-			menu: ''
+			menu: '&diet=paleo'
 		},
 		'Peanut-Free': {
 			name: 'Peanut-Free',
 			icon: '<i class="fas fa-acorn"></i>',
 			recipe: '&health=peanut-free',
-			menu: ''
+			menu: '&intolerances=peanut'
 		},
 		'Pescatarian': {
 			name: 'Pescatarian',
 			icon: '<i class="fas fa-fish-cooked"></i>',
 			recipe: '&health=pescatarian',
-			menu: ''
+			menu: '&diet=pescetarian'
 		},
 		'Pork-Free': {
 			name: 'Pork-Free',
 			icon: '<i class="fas fa-pig"></i>',
 			recipe: '&health=pork-free',
-			menu: ''
+			menu: '&diet=vegetarian'
 		},
 		'Red Meat-Free': {
 			name: 'Red Meat-Free',
 			icon: '<i class="fas fa-steak"></i>',
 			recipe: '&health=red-meat-free',
-			menu: ''
+			menu: '&diet=vegetarian'
 		},
 		'Shellfish-Free': {
 			name: 'Shellfish-Free',
 			icon: '<i class="fas fa-fish"></i>',
 			recipe: '&health=shellfish-free',
-			menu: ''
+			menu: '&intolerances=shellfish'
 		},
 		'Soy-Free': {
 			name: 'Soy-Free',
 			icon: '<i class="fas fa-seedling"></i>',
 			recipe: '&health=soy-free',
-			menu: ''
+			menu: '&intolerances=soy'
 		},
 		'Tree-Nut-Free': {
 			name: 'Tree-Nut-Free',
 			icon: '<i class="fas fa-tree-alt"></i>',
 			recipe: '&health=tree-nut-free',
-			menu: ''
+			menu: '&intolerances=tree-nut'
 		},
 		'Vegan': {
 			name: 'Vegan',
 			icon: '<i class="fas fa-carrot"></i>',
 			recipe: '&health=vegan',
-			menu: ''
+			menu: '&diet=vegan'
 		},
 		'Vegetarian': {
 			name: 'Vegetarian',
 			icon: '<i class="fas fa-salad"></i>',
 			recipe: '&health=vegetarian',
-			menu: ''
+			menu: '&diet=vegetarian'
 		},
 		'Wheat-Free': {
 			name: 'Wheat-Free',
 			icon: '<i class="fas fa-wheat"></i>',
 			recipe: '&health=wheat-free',
-			menu: ''
+			menu: '&intolerances=wheat'
 		}
     };
     
