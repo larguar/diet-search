@@ -1,0 +1,100 @@
+//Console Recipe API (Edamam) - Jessica
+//https://developer.edamam.com/edamam-docs-recipe-api
+
+//Variable for the name of source
+// string, source site identifier
+<script>
+var sitesource = source;
+document.getElementById("source").innerHTML = sitesource;
+</script>
+
+//Variable for the name of recipe
+//Recipe fields - string, receipe title
+<script>
+var recipename = label
+document.getElementById("label").innerHTML = recipename;
+</script>
+
+//Variable for the name of image
+//Recipe fields - string, image URL
+var image = image
+<script>
+var image = image
+document.getElementById("image").innerHTML = image;
+</script>
+
+//Variable that share URL
+//sring, original recipe URL
+<script>
+var URL = URL
+document.getElementById("URL").innerHTML = URL;
+</script>
+
+
+
+
+
+
+
+
+//Console Recipe API (Edamam) - Jessica
+//https://developer.edamam.com/edamam-docs-recipe-api
+//Steps:
+//When user submits form button, then perform GET method.
+//Console each of the individual pieces
+//Create variables for each of the pieces of code (name of source, name of recipe, image)
+//API will return 12 menu items
+//If/else statement for no recipe items; tie to front-end
+
+//REST APIs have four types of parameters:
+//Header parameters: Parameters included in the request header, usually related to authorization.
+//Path parameters: Parameters within the path of the endpoint, before the query string (?). These are usually set off within curly braces.
+//Query string parameters: Parameters in the query string of the endpoint, after the ?.
+//Request body parameters: Parameters included in the request body. Usually submitted as JSON.
+
+//User has already submitted the form button now the GET method to Edaman API....
+//https://api.edamam.com/search
+
+//Need an endpoint URL ????
+//http://dietsearch-demo-endpoint.execute-api.com/
+https://api.edamam.com/search.json?q=
+
+//method is GET
+
+//console
+
+//API search parameters
+//q (required) string Query text. For example q=chicken. This or the r parameter are required
+variable q
+
+//r (required) sting Returns information about a specific recipe based on its ID ie. 
+//r=http%3A%2F%2Fwww.edamam.com%2Fontologies%2Fedamam.owl%23recipe_9b5945e03f05acbf9d69625138385408 This or the q parameter are required
+variable r
+
+//either q or r must be required
+if q is then
+else r is then
+
+
+
+//app_id (required) string  Your 3scale application ID
+variable app_id
+
+//app_key (required)  string  Your 3scale application key (please note app_id/app_key are an ordered pair)
+
+//diet (not required) enum Diet label: one of “balanced”, “high-protein”, “high-fiber”, “low-fat”, “low-carb”, “low-sodium”
+
+//pulling from the object 
+
+//Variable for the name of source
+
+//Variable for the name of recipe
+
+//Variable for the name of image
+
+//Variable that share URL
+//API returns 12 menu items
+//
+
+//Use an if/else statement for when there are no menu items
+
