@@ -209,6 +209,13 @@ $(document).ready(function(){
 		console.log(recipeQueryString);
 		console.log(menuQueryString);
 		
+		
+		// create empty strings to fill in for loop
+		var image = ''
+		var source = '';
+		var url = '';
+		var label= '';
+		
 		//jyp api edits
 		console.log(image);
 		console.log(source);
