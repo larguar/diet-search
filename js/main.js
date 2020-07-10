@@ -47,40 +47,24 @@ $(document).ready(function(){
 			recipe: '&health=gluten-free',
 			menu: '&intolerances=gluten'
 		},
-*/
-/*
 		'Keto': {
 			name: 'Keto',
 			icon: '<i class="fas fa-meat"></i>',
 			recipe: '&health=keto-friendly',
 			menu: '&diet=ketogenic'
 		},
-*/
-/*
 		'Paleo': {
 			name: 'Paleo',
 			icon: '<i class="fas fa-apple-alt"></i>',
 			recipe: '&health=paleo',
 			menu: '&diet=paleo'
 		},
-*/
-/*
-		'Peanut-Free': {
-			name: 'Peanut-Free',
-			icon: '<i class="fas fa-acorn"></i>',
-			recipe: '&health=peanut-free',
-			menu: '&intolerances=peanut'
-		},
-*/
-/*
 		'Pescatarian': {
 			name: 'Pescatarian',
 			icon: '<i class="fas fa-fish-cooked"></i>',
 			recipe: '&health=pescatarian',
 			menu: '&diet=pescetarian'
 		},
-*/
-/*
 		'Pork-Free': {
 			name: 'Pork-Free',
 			icon: '<i class="fas fa-pig"></i>',
@@ -105,13 +89,25 @@ $(document).ready(function(){
 			recipe: '&health=soy-free',
 			menu: '&intolerances=soy'
 		},
+		'Wheat-Free': {
+			name: 'Wheat-Free',
+			icon: '<i class="fas fa-wheat"></i>',
+			recipe: '&health=wheat-free',
+			menu: '&intolerances=wheat'
+		},
+*/
+		'Peanut-Free': {
+			name: 'Peanut-Free',
+			icon: '<i class="fas fa-acorn"></i>',
+			recipe: '&health=peanut-free',
+			menu: '&intolerances=peanut'
+		},
 		'Tree-Nut-Free': {
 			name: 'Tree-Nut-Free',
 			icon: '<i class="fas fa-tree-alt"></i>',
 			recipe: '&health=tree-nut-free',
 			menu: '&intolerances=tree-nut'
 		},
-*/
 		'Vegan': {
 			name: 'Vegan',
 			icon: '<i class="fas fa-carrot"></i>',
@@ -123,15 +119,7 @@ $(document).ready(function(){
 			icon: '<i class="fas fa-salad"></i>',
 			recipe: '&health=vegetarian',
 			menu: '&diet=vegetarian'
-		}/*
-,
-		'Wheat-Free': {
-			name: 'Wheat-Free',
-			icon: '<i class="fas fa-wheat"></i>',
-			recipe: '&health=wheat-free',
-			menu: '&intolerances=wheat'
 		}
-*/
     };
     
     // create content section   
@@ -145,17 +133,7 @@ $(document).ready(function(){
 	var footer = $('<footer>').attr('id', 'container');
 	footer.html('<div class="row"><div class="col s12"><h2>Didn’t find what you’re looking for?</h2><a href="#hero" class="btn-large deep-orange lighten-2">Search Again</a></div></div>');
 	
-/*
-	// pull menu API
-	var menuURL = "https://api.spoonacular.com/food/menuItems/search?apiKey=e0a3536a362b46d38d50a5b045964f5a&number=12&query=sandwich&intolerances=gluten";
-
-	$.ajax({
-	  url: menuURL,
-	  method: "GET"
-	}).then(function(response) {
-		console.log('Menu API Response: ', response);
-	});
-	
+/*	
 	// pull food joke API
 	var jokeURL = "https://api.spoonacular.com/food/trivia/random?apiKey=e0a3536a362b46d38d50a5b045964f5a";
 
@@ -205,39 +183,35 @@ $(document).ready(function(){
 				menuQueryString = menuQueryString.concat(restrictions[i].menu);			
 			});
 		}
-		
-		// data we'll need for query URLs
-		console.log(foodType);
-		console.log(recipeQueryString);
-		console.log(menuQueryString);
-		
-		// append content section
-			content.append(contentContainer);
-			$('body').append(content);
-		
+
 		// pull recipe API
-	    var recipeURL = 'https://api.edamam.com/search?app_id=d544ae9f&app_key=c5ad09c117643ee56f64724e79d6a318&to=12' + '&q=' + foodType;
-	    
+	    var recipeURL = 'https://api.edamam.com/search?app_id=d544ae9f&app_key=c5ad09c117643ee56f64724e79d6a318&to=12' + '&q=' + foodType;	    
 	    if (recipeQueryString !== '') {
 		    recipeURL = 'https://api.edamam.com/search?app_id=d544ae9f&app_key=c5ad09c117643ee56f64724e79d6a318&to=12' + '&q=' + foodType + recipeQueryString;
-	    }
-	    
-	    $.ajax({
+	    }	    
+	    var recipeRequest = $.ajax({
 		  url: recipeURL,
 		  method: "GET"
-		}).then(function(response) {
-			
-			console.log(response);
+		});
 		
+		// pull menu API
+		var menuURL = 'https://api.spoonacular.com/food/menuItems/search?apiKey=e0a3536a362b46d38d50a5b045964f5a&number=12' + '&query=' + foodType;		
+		if (menuQueryString !== '') {
+		    menuURL = 'https://api.spoonacular.com/food/menuItems/search?apiKey=e0a3536a362b46d38d50a5b045964f5a&number=12' + '&query=' + foodType + menuQueryString;
+	    }	
+		var menuRequest = $.ajax({
+		  url: menuURL,
+		  method: "GET"
+		});
+		
+		$.when(recipeRequest, menuRequest).done(function(responseRecipe, responseMenu) {
+			
 			// create recipe section
 		    var recipes = $('<section>').attr('id', 'recipes').addClass('row');
 		    var recipeHeading = $('<div>').addClass('col s12').html('<h2>In the Kitchen</h2>');
 		    var recipeCarousel = $('<div>').addClass('owl-carousel owl-theme col s12');
 			
-			// recipe array (would be pulled from API)
-			var recipeArray = ['Recipe 1', 'Recipe 2', 'Recipe 3', 'Recipe 4', 'Recipe 5', 'Recipe 6'];
-			
-			recipeArray.forEach(function(i) {
+			responseRecipe[0].hits.forEach(function(i) {
 				
 				// create card
 				var recipeCard = $('<div>').addClass('card');
@@ -245,17 +219,17 @@ $(document).ready(function(){
 				// create card image items
 				var recipeImageContainer = $('<div>').addClass('card-image');
 				var recipeImage = $('<div>').addClass('image');
-				recipeImage.attr('style', 'background-image: url(http://placehold.it/400x300)');		
+				recipeImage.attr('style', 'background-image: url(' + i.recipe.image + ')');		
 				var recipeButton = $('<a>').addClass('btn-floating btn-large halfway-fab deep-orange lighten-2');
-				recipeButton.attr('target', '_blank').attr('href', '#');
+				recipeButton.attr('target', '_blank').attr('href', i.recipe.shareAs);
 				recipeButton.html('<i class="fal fa-clipboard-list"></i>');
 				
 				// create card content items
 				var recipeContent = $('<div>').addClass('card-content');		
 				var recipeSource = $('<p>').attr('id', 'recipe-source');
-				recipeSource.text('Source Name');		
+				recipeSource.text(i.recipe.source);		
 				var recipeName = $('<h3>').attr('id', 'recipe-name');
-				recipeName.text('Name of the Recipe');		
+				recipeName.text(i.recipe.label);		
 				var recipeIcons = $('<div>').attr('id', 'icons');
 				recipeIcons.html(iconString);		
 		
@@ -298,32 +272,13 @@ $(document).ready(function(){
 				autoplay: false,
 				navSpeed: 500
 			});
-		
-		});
-		
-		// pull menu API
-		var menuURL = 'https://api.spoonacular.com/food/menuItems/search?apiKey=e0a3536a362b46d38d50a5b045964f5a&number=12' + '&query=' + foodType;
-		
-		if (menuQueryString !== '') {
-		    menuURL = 'https://api.spoonacular.com/food/menuItems/search?apiKey=e0a3536a362b46d38d50a5b045964f5a&number=12' + '&query=' + foodType + menuQueryString;
-	    }
-	
-		$.ajax({
-		  url: menuURL,
-		  method: "GET"
-		}).then(function(response) {
 			
-			console.log(response);
-		
 			// create menus section
 		    var menus = $('<section>').attr('id', 'menus').addClass('row');
 		    var menusHeading = $('<div>').addClass('col s12').html('<h2>Venture Out</h2>');
 		    var menusCarousel = $('<div>').addClass('owl-carousel owl-theme col s12');
-			
-			// menus array (would be pulled from API)
-			var menusArray = ['Menu 1', 'Menu 2', 'Menu 3', 'Menu 4', 'Menu 5', 'Menu 6'];
 		    
-		    menusArray.forEach(function(i) {
+		    responseMenu[0].menuItems.forEach(function(i) {
 				
 				// create card
 				var menusCard = $('<div>').addClass('card');
@@ -331,18 +286,18 @@ $(document).ready(function(){
 				// create card image items
 				var menusImageContainer = $('<div>').addClass('card-image');
 				var menusImage = $('<div>').addClass('image');
-				menusImage.attr('style', 'background-image: url(http://placehold.it/400x300)');		
+				menusImage.attr('style', 'background-image: url(' + i.image + ')');		
 				var menusButton = $('<a>').addClass('btn-floating btn-large halfway-fab cyan');
 				// update this when you update restaurant name from restaurant api
-				menusButton.attr("data-restaurant-name", "mcdonalds");
+				menusButton.attr("data-restaurant-name", i.restaurantChain);
 				menusButton.html('<i class="fal fa-map-marker-alt"></i>');
 				
 				// create card content items
 				var menusContent = $('<div>').addClass('card-content');		
 				var menusRestaurant = $('<p>').attr('id', 'restaurant');
-				menusRestaurant.text('Restaurant Name');		
+				menusRestaurant.text(i.restaurantChain);		
 				var menusName = $('<h3>').attr('id', 'menu-name');
-				menusName.text('Name of the Menu Item');		
+				menusName.text(i.title);		
 				var menusIcons = $('<div>').attr('id', 'icons');
 				menusIcons.html(iconString);		
 		
@@ -417,8 +372,12 @@ $(document).ready(function(){
 				autoplay: false,
 				navSpeed: 500
 			});
-		
+			
 		});
+
+		// append content section
+		content.append(contentContainer);
+		$('body').append(content);
 		
 		$('body').append(map, footer);	
 		$('#map').attr('style', 'display: none');    
