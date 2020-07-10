@@ -11,24 +11,28 @@ So that I don't have to aimlessly search Google
 ## APIs Needed
 * Spoonacular Search Menu Items API: https://spoonacular.com/food-api/docs#Search-Menu-Items
 * Edamam Recipe Search API: https://developer.edamam.com/edamam-docs-recipe-api
-* Map API
-* Spoonacular Get Random Food Trivia API: https://spoonacular.com/food-api/docs#Get-Random-Food-Trivia
+* Google Maps API: https://developers.google.com/maps/documentation/javascript/tutorial
 
 ## Need to Have Criteria
 * Search bar
 * Select/checkboxes for dietary restrictions
-* Search through restaurant database for menu items
 * Search through recipe database for recipes
-* Menu items output item name, restaurant, image or placeholder, open map link, and search criteria icons
-* Recipe items output item name, source name, image or placeholder, link to full recipe, and search criteria icons
+* Search through restaurant database for menu items
+* Recipe items output item name, source name, image, link to full recipe, and search criteria icons
+* Menu items output item name, restaurant, image, open map link, and search criteria icons
 * Non-flexible search – must meet all criteria
 * Limit search results
 
 ## Nice to Have Criteria
 * Save specific restaurants and recipes
-* Save specific search
-* Add sort feature
+* Save specific search to local storage
 * Full recipe within our app
+* On map marker button click, map would populate closest locations of that restaurant
+* If no restaurants within 25 miles, hide that card on the page altogether
+* No duplicate card results
+* More dietary filters
+* No search results found section
+* Loader while API is loading
 
 ## Wireframe
 ![App Wireframe](img/diet-wireframe.png)
