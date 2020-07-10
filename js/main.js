@@ -142,6 +142,9 @@ $(document).ready(function(){
 		console.log('Recipe API Response: ', response);
 	});
 	
+	// pull food joke API
+	var jokeURL = "https://api.spoonacular.com/food/trivia/random?apiKey=e0a3536a362b46d38d50a5b045964f5a";
+	
 	// pull menu API
 	var menuURL = "https://api.spoonacular.com/food/menuItems/search?apiKey=e0a3536a362b46d38d50a5b045964f5a&number=12&query=sandwich&intolerances=gluten";
 
@@ -206,6 +209,12 @@ $(document).ready(function(){
 		console.log(recipeQueryString);
 		console.log(menuQueryString);
 		
+		//jyp api edits
+		console.log(image);
+		console.log(source);
+		console.log(url);
+		console.log(label);
+			    
 		// create recipe section
 	    var recipes = $('<section>').attr('id', 'recipes').addClass('row');
 	    var recipeHeading = $('<div>').addClass('col s12').html('<h2>In the Kitchen</h2>');
