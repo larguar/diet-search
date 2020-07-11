@@ -309,17 +309,15 @@ $(document).ready(function(){
 				
 				// on menu item button click...
 				menusButton.on("click", function (event) {
+					window.location.href="https://www.google.com/maps/search/?api=1&query=" + i.restaurantChain;
+
+
 					event.preventDefault();
 					$("#map").attr("style", "display: block");
 					console.log("map button");
 	
 					var restaurantMap = $(this).attr("data-restaurant-name");
 					console.log({ restaurantMap });
-	
-					// placeholder until we get the map stuff here
-					$("#map").attr("style", "height: 400px; background: #ccc;");
-	
-					scrollTo("map");
 	
 					var mapURL =
 					  "https://api.tomtom.com/search/2/search/" +
